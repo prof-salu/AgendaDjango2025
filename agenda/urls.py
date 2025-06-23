@@ -12,4 +12,8 @@ urlpatterns = [
     path('contato/novo/', views.contato_criar, name='contato_criar'),
     # URL para exibir detalhes de um contato específico
     path('contato/<int:pk>/', views.contato_detalhe, name='contato_detalhe'),
+    # URL para editar um contato existente
+    path('contato/<int:pk>/editar/', views.contato_editar, name='contato_editar'),
+    # URL para excluir um contato
+    path('contato/<int:pk>/excluir/', views.contato_excluir, name='contato_excluir'),
 ]

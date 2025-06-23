@@ -21,7 +21,7 @@
     <p><strong>Criado em:</strong> {{ contato.created_at|date:"d/m/Y H:i" }}</p>
 
     <div class="actions">
-        {# Links para editar e excluir serão adicionados em próximas etapas #}
+        <a href="{% url 'agenda:contato_editar' contato.pk %}">Editar</a> {# Link para editar adicionado #}
     </div>
     <a href="{% url 'agenda:contato_lista' %}">Voltar para a lista</a>
 </body>

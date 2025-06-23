@@ -10,5 +10,5 @@ class ContatoForm(forms.ModelForm):
         fields = ['nome', 'telefone', 'endereco', 'email', 'data_de_nascimento']
         # Widgets para personalizar a aparência dos campos
         widgets = {
-            'data_de_nascimento': forms.DateInput(attrs={'type': 'date'}),
+            'data_de_nascimento': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'), # Adicionado format
         }

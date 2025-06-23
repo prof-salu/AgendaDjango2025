@@ -9,9 +9,10 @@
         /* Estilos simplificados */
         body { font-family: sans-serif; margin: 20px; }
         ul { list-style: none; padding: 0; }
-        li { margin-bottom: 5px; padding: 5px; border: 1px solid #ccc; }
+        li { margin-bottom: 5px; padding: 5px; border: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; }
         .add-link { display: inline-block; margin-bottom: 10px; padding: 8px 15px; background-color: #0f0; text-decoration: none; color: #000; }
-        li a { text-decoration: none; color: blue; margin-right: 5px; } /* Link para o nome do contato */
+        li a { text-decoration: none; color: blue; margin-right: 5px; }
+        .action-links a { margin-left: 10px; } /* Para separar os links de ação */
     </style>
 </head>
 <body>
@@ -21,9 +22,11 @@
         <ul>
             {% for contato in contatos %}
                 <li>
-                    {# Agora o nome é um link para a página de detalhes #}
                     <a href="{% url 'agenda:contato_detalhe' contato.pk %}">{{ contato.nome }} - {{contato.email}}</a>
-                    {# Links para editar e excluir serão adicionados após suas seções #}
+                    <div class="action-links">
+                        <a href="{% url 'agenda:contato_editar' contato.pk %}">Editar</a>
+                        <a href="{% url 'agenda:contato_excluir' contato.pk %}">Excluir</a>
+                    </div>
                 </li>
             {% endfor %}
         </ul>

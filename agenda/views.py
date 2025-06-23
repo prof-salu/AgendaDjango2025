@@ -29,3 +29,31 @@ def contato_detalhe(request, pk):
     contato = get_object_or_404(Contato, pk=pk)
     # Renderiza o template 'contato_detalhe.html', passando o contato como contexto
     return render(request, 'agenda/contato_detalhe.html', {'contato': contato})
+
+def contato_editar(request, pk):
+    # Obtém o contato existente pelo ID (pk), ou levanta 404 se não encontrado
+    contato = get_object_or_404(Contato, pk=pk)
+    if request.method == 'POST':
+        # Se a requisição for POST, o formulário foi enviado com novos dados
+        # 'instance=contato' é crucial: informa ao formulário que ele deve ATUALIZAR este objeto
+        form = ContatoForm(request.POST, instance=contato)
+        if form.is_valid():
+            # Se o formulário for válido, salva (atualiza) o contato no banco de dados
+            form.save()
+            # Redireciona para a página de detalhes do contato atualizado
+            return redirect('agenda:contato_detalhe', pk=contato.pk)
+    else:
+        # Se a requisição for GET, exibe o formulário preenchido com os dados atuais do contato
+        form = ContatoForm(instance=contato)
+    # Renderiza o template, passando o formulário, o contato e um título para a página
+    return render(request, 'agenda/contato_form.html', {'form': form, 'contato': contato, 'titulo_pagina': 'Editar Contato'})
+
+def contato_excluir(request, pk):
+    contato = get_object_or_404(Contato, pk=pk)
+    if request.method == 'POST':
+        # Se a requisição for POST, significa que o usuário confirmou a exclusão
+        contato.delete() # Exclui o contato do banco de dados
+        return redirect('agenda:contato_lista') # Redireciona para a lista
+    # Se a requisição for GET, exibe a página de confirmação
+    return render(request, 'agenda/contato_confirm_delete.html', {'contato': contato})
+    return render(request, 'agenda/contato_confirm_delete.html', {'contato': contato})

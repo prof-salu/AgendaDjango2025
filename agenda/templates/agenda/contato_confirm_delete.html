@@ -1,0 +1,25 @@
+<!-- agenda/templates/agenda/contato_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Exclusão</title>
+    <style>
+        /* Estilos simplificados */
+        body { font-family: sans-serif; margin: 20px; text-align: center; }
+        h1 { color: red; }
+        button { margin-right: 10px; padding: 8px 15px; background-color: #ccc; border: 1px solid #000; cursor: pointer;}
+        a { text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Confirmar Exclusão</h1>
+    <p>Tem certeza de que deseja excluir o contato **"{{ contato.nome }}"**?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sim, Excluir</button>
+    </form>
+    <a href="{% url 'agenda:contato_detalhe' contato.pk %}">Cancelar</a>
+</body>
+</html>
