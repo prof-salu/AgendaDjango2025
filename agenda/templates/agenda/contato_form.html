@@ -1,0 +1,27 @@
+<!-- agenda/templates/agenda/contato_form.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo_pagina }}</title>
+    <style>
+        /* Estilos simplificados */
+        body { font-family: sans-serif; margin: 20px; }
+        form div { margin-bottom: 10px; }
+        form label { display: block; }
+        form input, form textarea { width: 100%; padding: 5px; margin-top: 2px; border: 1px solid #000; }
+        form button { margin-top: 10px; padding: 8px 15px; background-color: #ccc; border: 1px solid #000; cursor: pointer;}
+        .back-link { margin-left: 10px; text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+    <h1>{{ titulo_pagina }}</h1>
+    <form method="post">
+        {% csrf_token %} {# Tag de segurança obrigatória no Django #}
+        {{ form.as_p }} {# Renderiza os campos do formulário como parágrafos #}
+        <button type="submit">Salvar Contato</button>
+        <a href="{% url 'agenda:contato_lista' %}" class="back-link">Cancelar</a>
+    </form>
+</body>
+</html>

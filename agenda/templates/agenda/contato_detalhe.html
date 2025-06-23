@@ -1,0 +1,28 @@
+<!-- agenda/templates/agenda/contato_detalhe.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ contato.nome }} - Detalhes do Contato</title>
+    <style>
+        /* Estilos simplificados */
+        body { font-family: sans-serif; margin: 20px; }
+        .actions a { margin-right: 10px; text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Detalhes de {{ contato.nome }}</h1>
+    <p><strong>Nome:</strong> {{ contato.nome }}</p>
+    <p><strong>Telefone:</strong> {{ contato.telefone|default:"Não informado" }}</p>
+    <p><strong>Endereço:</strong> {{ contato.endereco|default:"Não informado" }}</p>
+    <p><strong>Email:</strong> {{ contato.email|default:"Não informado" }}</p>
+    <p><strong>Data de Nascimento:</strong> {{ contato.data_de_nascimento|date:"d/m/Y"|default:"Não informado" }}</p>
+    <p><strong>Criado em:</strong> {{ contato.created_at|date:"d/m/Y H:i" }}</p>
+
+    <div class="actions">
+        {# Links para editar e excluir serão adicionados em próximas etapas #}
+    </div>
+    <a href="{% url 'agenda:contato_lista' %}">Voltar para a lista</a>
+</body>
+</html>
